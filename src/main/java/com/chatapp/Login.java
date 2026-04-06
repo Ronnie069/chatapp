@@ -6,11 +6,12 @@ public class Login {
 
     private final String username;
     private final String password;
-    private String phoneNumber;
+    private final String phoneNumber;
 
-    public Login(String username, String password, String firstName, String lastName, String string) {
+    public Login(String username, String password, String firstName, String lastName, String phoneNumber) {
         this.username = username;
         this.password = password;
+        this.phoneNumber = phoneNumber; // <-- This was missing!
     }
 
     public boolean checkUserName() {
@@ -45,4 +46,10 @@ public class Login {
         }
         return "Username, Password and Cell phone number successfully captured.";
     }
+
+    public boolean loginUser(String enteredUser, String enteredPass) {
+    // Matches entered details against the stored credentials
+    return this.username.equals(enteredUser) && this.password.equals(enteredPass);
+}
+
 }
