@@ -48,8 +48,16 @@ public class Login {
     }
 
     public boolean loginUser(String enteredUser, String enteredPass) {
-    // Matches entered details against the stored credentials
-    return this.username.equals(enteredUser) && this.password.equals(enteredPass);
-}
+        // Matches entered details against the stored credentials
+        return this.username.equals(enteredUser) && this.password.equals(enteredPass);
+    }
+
+    public String returnLoginStatus(boolean isLoggedIn, String firstName, String lastName) {
+        if (isLoggedIn) {
+            return "Welcome " + firstName + ", " + lastName + " it is great to see you again.";
+        } else {
+            return "Username or password incorrect, please try again.";
+        }
+    }
 
 }
