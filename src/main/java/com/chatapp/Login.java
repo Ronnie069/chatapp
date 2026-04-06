@@ -11,7 +11,7 @@ public class Login {
     public Login(String username, String password, String firstName, String lastName, String phoneNumber) {
         this.username = username;
         this.password = password;
-        this.phoneNumber = phoneNumber; // <-- This was missing!
+        this.phoneNumber = phoneNumber;
     }
 
     public boolean checkUserName() {
@@ -19,18 +19,13 @@ public class Login {
     }
 
     public boolean checkPasswordComplexity() {
-        // Regex explanation: 
-        // (?=.*[A-Z]) -> at least one uppercase
-        // (?=.*[0-9]) -> at least one digit
-        // (?=.*[!@#$%^&*]) -> at least one special char
-        // .{8,} -> at least 8 characters long
         String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,}$";
         return java.util.regex.Pattern.compile(regex).matcher(this.password).matches();
     }
 
     public boolean checkCellPhoneNumber() {
-        // PoE Requirement: International code (+) and length check
-        String regex = "^\\+\\d{1,3}\\d{9,10}$";
+        // PoE Requirement: International code (+) and length check [cite: 83]
+        String regex = "^\\+\\d{1,3}\\d{1,10}$";
         return Pattern.compile(regex).matcher(this.phoneNumber).matches();
     }
 
@@ -48,7 +43,6 @@ public class Login {
     }
 
     public boolean loginUser(String enteredUser, String enteredPass) {
-        // Matches entered details against the stored credentials
         return this.username.equals(enteredUser) && this.password.equals(enteredPass);
     }
 
@@ -59,5 +53,4 @@ public class Login {
             return "Username or password incorrect, please try again.";
         }
     }
-
 }
