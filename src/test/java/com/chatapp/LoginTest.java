@@ -14,6 +14,8 @@ public class LoginTest {
 
         Login invalid = new Login("kyle!!!!!!!", "P@ss123", "Kyle", "Doe", "+27838968976");
         assertFalse(invalid.checkUserName());
+        
+        System.out.println("testCheckUserName passed successfully.");
     }
 
     @Test
@@ -23,6 +25,8 @@ public class LoginTest {
 
         Login invalid = new Login("kyl_1", "password", "Kyle", "Doe", "+27838968976");
         assertFalse(invalid.checkPasswordComplexity());
+        
+        System.out.println("testPasswordComplexity passed successfully.");
     }
 
     @Test
@@ -32,18 +36,21 @@ public class LoginTest {
 
         Login invalid = new Login("kyl_1", "Ch&&sec@ke99!", "Kyle", "Doe", "08966553");
         assertFalse(invalid.checkCellPhoneNumber());
+        
+        System.out.println("testCheckCellPhoneNumber passed successfully.");
     }
 
-    // MANDATORY assertEquals TESTS FROM POE TABLE [cite: 101, 106]
     @Test
     public void testRegisterUserMessages() {
-        // Test Case: Incorrect Username [cite: 101]
+        // Test Case: Incorrect Username
         Login badUser = new Login("kyle!!!!!!!", "Ch&&sec@ke99!", "Kyle", "Doe", "+27838968976");
         assertEquals("Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.", badUser.registerUser());
 
-        // Test Case: Incorrect Password [cite: 106]
+        // Test Case: Incorrect Password
         Login badPass = new Login("kyl_1", "password", "Kyle", "Doe", "+27838968976");
         assertEquals("Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.", badPass.registerUser());
+        
+        System.out.println("testRegisterUserMessages passed successfully.");
     }
 
     @Test
@@ -51,5 +58,7 @@ public class LoginTest {
         Login login = new Login("kyl_1", "Ch&&sec@ke99!", "Kyle", "Doe", "+27838968976");
         assertTrue(login.loginUser("kyl_1", "Ch&&sec@ke99!"));
         assertFalse(login.loginUser("wrong_user", "wrong_pass"));
+        
+        System.out.println("testLoginUser passed successfully.");
     }
 }
