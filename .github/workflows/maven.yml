@@ -1,0 +1,28 @@
+name: ChatApp CI - Automated Unit Testing
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build and Verify Requirements
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1. Fetch Source Code
+      uses: actions/checkout@v3
+
+    - name: 2. Initialize Java JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: 3. Execute Maven Test Suite
+      # -B runs in non-interactive "Batch" mode
+      # --errors ensures we see the full report if a PoE requirement fails
+      run: mvn -B test --errors
