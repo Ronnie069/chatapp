@@ -1,6 +1,7 @@
 package com.chatapp;
 
 public class Login {
+
     private String username;
     private String password;
     private String firstName;
@@ -12,5 +13,9 @@ public class Login {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public boolean checkUserName() {
+        return username.contains("_") && username.length() <= 5;
     }
 }
